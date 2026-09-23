@@ -57,6 +57,16 @@ const pythonTeacher = new Agent({
   tools: [toAgentTool(pythonBookTool)],
 });
 
+// 新增：CSS 老師
+const cssTeacher = new Agent({
+  name: "CSS 老師",
+  model: MODEL,
+  modelSettings: MODEL_SETTINGS,
+  instructions:
+    "你是 CSS 老師，專門回答網頁排版、Flexbox、Grid、RWD（響應式網頁設計）、CSS 動畫與樣式相關問題。請用繁體中文回答。",
+  handoffDescription: "CSS 網頁排版、RWD、動畫與樣式相關問題",
+});
+
 const homeroom = Agent.create({
   name: "班導師",
   model: MODEL,
@@ -71,7 +81,8 @@ const homeroom = Agent.create({
     toAgentTool(youbikeTool),
     toAgentTool(netflixTool),
   ],
-  handoffs: [phpTeacher, vueTeacher, pythonTeacher],
+  // 將 CSS 老師加入 handoffs 陣列
+  handoffs: [phpTeacher, vueTeacher, pythonTeacher, cssTeacher],
   mcpServers: [tenlongMcp],
 });
 
